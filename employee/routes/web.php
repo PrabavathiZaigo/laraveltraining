@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ExampleController;
+use App\Http\Controllers\EmployeController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -46,6 +47,25 @@ Route::get('users2', [EmployeeController::class, 'list'])->name('list');
 
 
 
-Route::get('form', [ExampleController::class, 'show'])-> name('student');
-Route::post('form', [ExampleController::class, 'create'])-> name('student_details');
-Route::get('form1', [ExampleController::class, 'index'])-> name('student_list');
+Route::get('create', [StudentController::class, 'create'])-> name('student');
+Route::post('store', [StudentController::class, 'store'])-> name('student_details');
+Route::get('index', [StudentController::class, 'index'])-> name('student_list');
+Route::get('edit/{id}', [StudentController::class, 'edit'])->name('edit');
+Route::put('update', [StudentController::class, 'update'])->name('update');
+Route::delete('destroy/{id}', [StudentController::class, 'destroy'])->name('destroy');
+
+
+
+
+
+Route::group(['prefix' => 'employes', 'as' => 'employes.'],
+function (){
+    Route::get('index',[EmployeController::class,'index'])->name('index');
+    Route::get('create',[EmployeController::class,'create'])->name('create');
+    Route::post('store',[EmployeController::class,'store'])->name('store');
+    Route::put('update',[EmployeController::class,'update'])->name('update');
+    Route::delete('destroy',[EmployeController::class,'destroy'])->name('destroy');
+    Route::get('show',[EmployeController::class,'show'])->name('show');
+    Route::get('edit',[EmployeController::class,'edit'])->name('edit');
+
+});

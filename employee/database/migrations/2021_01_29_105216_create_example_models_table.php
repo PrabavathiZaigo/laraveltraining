@@ -13,7 +13,7 @@ class CreateExampleModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('example_models', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string("name",191)->nullable();
             $table->integer("age");
@@ -29,6 +29,6 @@ class CreateExampleModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('example_models');
+        Schema::dropIfExists('students');
     }
 }
