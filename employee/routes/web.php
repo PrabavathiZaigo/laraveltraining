@@ -58,14 +58,21 @@ Route::delete('destroy/{id}', [StudentController::class, 'destroy'])->name('dest
 
 
 
-Route::group(['prefix' => 'employes', 'as' => 'employes.'],
+Route::group(['prefix' => 'employes', 'as' => 'employes.', 'middleware' => 'auth'],
 function (){
     Route::get('index',[EmployeController::class,'index'])->name('index');
     Route::get('create',[EmployeController::class,'create'])->name('create');
     Route::post('store',[EmployeController::class,'store'])->name('store');
     Route::put('update',[EmployeController::class,'update'])->name('update');
-    Route::delete('destroy',[EmployeController::class,'destroy'])->name('destroy');
+    Route::delete('destroy/{id}',[EmployeController::class,'destroy'])->name('destroy');
     Route::get('show',[EmployeController::class,'show'])->name('show');
-    Route::get('edit',[EmployeController::class,'edit'])->name('edit');
+    Route::get('edit/{id}',[EmployeController::class,'edit'])->name('edit');
 
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,6 +1,30 @@
-<h2>Student List</h2>
+<html>
+    <title>Employee Management</title>
+    <head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js" type="javascript"></script>
+     <link rel="stylesheet" href="../css/index.css">
+    </head>
+    <body>
+        <header>
+            
+                        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                            <!-- Brand/logo -->
+                            <a class="navbar-brand" href="#">
+                            </a>
+                            <a >
+                            <h3 class="text-white" style="margin-left: 500px">EMPLOYEE REGISTER</h3></a>
+                        </nav>
+            </div>
+        </header>
 
-<table border=2>
+
+
+<h2>Student List</h2>
+<form action="{{route('employes.create')}}" method="">
+@csrf
+<input type="submit" value="add" /></form>
+<table border='2'>
 <tr>
 <th>Id</th>
 <th>FirstName</th>
@@ -15,6 +39,8 @@
 <th>Date</th>
 <th>Email</th>
 <th>Password</th>
+<th>Operation</th>
+<th>Operation</th>
 </tr>
 @forelse($model as $k => $model1) 
 
@@ -32,5 +58,14 @@
     <td>{{$model1->date_of_birth}}</td>
     <td>{{$model1->email}}</td>
     <td>{{$model1->password}}</td>
+    <td><a href="{{route('employes.edit',['id' =>$model1['id']])}}">Edit</a></td>
+    <td><form action="{{route('employes.destroy',['id' =>$model1['id']])}}" method="post">
+    @csrf
+    @method('DELETE')
+    <input type="submit" value="delete" /></form></td></tr>
     </tr>
+    @empty
+    
 @endforelse
+
+{{$model -> links()}}
