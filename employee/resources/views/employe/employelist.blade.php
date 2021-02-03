@@ -23,7 +23,7 @@
 <h2>Student List</h2>
 <form action="{{route('employes.create')}}" method="">
 @csrf
-<input type="submit" value="add" /></form>
+<input type="submit" value="add" class="btn btn-info"/></form>
 <table border='2'>
 <tr>
 <th>Id</th>
@@ -39,6 +39,8 @@
 <th>Date</th>
 <th>Email</th>
 <th>Password</th>
+<th>Hobbies</th>
+<th>File</th>
 <th>Operation</th>
 <th>Operation</th>
 </tr>
@@ -57,7 +59,9 @@
     <td>{{$model1->pincode}}</td>
     <td>{{$model1->date_of_birth}}</td>
     <td>{{$model1->email}}</td>
-    <td>{{$model1->password}}</td>
+    <td>{{$model1->passwords}}</td>
+    <td>{{$model1->hobbies}}</td>
+    <td>{{$model1->file_name}}</td>
     <td><a href="{{route('employes.edit',['id' =>$model1['id']])}}">Edit</a></td>
     <td><form action="{{route('employes.destroy',['id' =>$model1['id']])}}" method="post">
     @csrf

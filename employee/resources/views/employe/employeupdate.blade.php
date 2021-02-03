@@ -17,7 +17,7 @@
                         </nav>
             </div>
         </header>
-        <form class="table row col-xl-9" style="margin-left:200px" method="post" action="{{route('employes.update')}}">
+        <form class="table row col-xl-9" style="margin-left:200px" method="post" action="{{route('employes.update')}}" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="row">
@@ -74,33 +74,48 @@
                      </select>
             </div>
             <div class="col-xl-6">
-            <lable for="phone">PhoneNumber</lable></div>
+            <lable for="phone_number">PhoneNumber</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="number" name="phone" value="{{$data['phone_number']}}"/></div>
+            <input type="number" name="phone_number" value="{{$data['phone_number']}}"/></div>
             <div class="col-xl-6">
             <lable for="pincode">Pincode</lable></div>
             <div class="col-xl-6 mb-4">
             <input type="number" name="pincode" value="{{$data['pincode']}}"/></div>
             <div class="col-xl-6">
-            <lable for="date">Date-Of-Birth</lable></div>
+            <lable for="date_of_birth">Date-Of-Birth</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="date" name="date" value="{{$data['date_of_birth']}}"/></div>
+            <input type="date" name="date_of_birth" value="{{$data['date_of_birth']}}"/></div>
             <div class="col-xl-6">
             <lable for="email">Email</lable></div>
             <div class="col-xl-6 mb-4">
             <input type="text" name="email" value="{{$data['email']}}"/></div>
             <div class="col-xl-6">
-            <lable for="password">Password</lable></div>
+            <lable for="passwords">Password</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="password" name='password' value="{{$data['password']}}"/></div>
+            <input type="password" name='passwords' value=""/></div>
             <div class="col-xl-6">
             <lable for="confirm_password">Confirm Password</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="password" name="confirm_password" value="{{$data['password']}}"/></div>
+            <input type="password" name="confirm_password" value=""/></div>
+            
             <div class="col-xl-6">
-            <lable>Submit</lable></div>
+            <lable for="hobbies">Hobbies</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="submit" value="update"/></div>
+            @php $hobbies = explode(',',$data['hobbies']); @endphp
+            <input type="checkbox" name="hobbies[]" value="readings" @if(in_array('readings',$hobbies)) checked @endif />readings
+            <input type="checkbox" name="hobbies[]" value="music"  @if(in_array('music',$hobbies)) checked @endif  />music
+            <input type="checkbox" name="hobbies[]" value="cooking"  @if(in_array('cooking',$hobbies)) checked @endif />cooking
+            <input type="checkbox" name="hobbies[]" value="play"  @if(in_array('play',$hobbies)) checked @endif />play
+            </div>
+            <div class="col-xl-6">
+            <lable for="file_name">File</lable></div>
+            <div class="col-xl-6 mb-4">
+            <input type="file" name="file_name"  value=""/>
+            <a target="_blank" href="{{ asset('storage/images/'.$data['file_name']) }}">Download</a> 
+            <div class="col-xl-6">
+            <lable></lable></div>
+            <div class="col-xl-6 mb-4">
+            <input type="submit" value="update" class="btn btn-primary"/></div>
             </div>
         </form>
     </body>

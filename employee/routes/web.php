@@ -5,8 +5,6 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,16 +43,12 @@ Route::get('users2', [EmployeeController::class, 'list'])->name('list');
 
 
 
-
-
 Route::get('create', [StudentController::class, 'create'])-> name('student');
 Route::post('store', [StudentController::class, 'store'])-> name('student_details');
 Route::get('index', [StudentController::class, 'index'])-> name('student_list');
 Route::get('edit/{id}', [StudentController::class, 'edit'])->name('edit');
 Route::put('update', [StudentController::class, 'update'])->name('update');
 Route::delete('destroy/{id}', [StudentController::class, 'destroy'])->name('destroy');
-
-
 
 
 
@@ -76,3 +70,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('file', [StudentController::class, 'file'])-> name('file');
+Route::post('store1', [StudentController::class, 'store1'])-> name('store1');
+
+
+Route::get('first', [StudentController::class, 'first'])-> name('file');
+
+
