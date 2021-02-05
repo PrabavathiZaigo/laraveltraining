@@ -23,27 +23,28 @@
 <h2>Student List</h2>
 <form action="{{route('employes.create')}}" method="">
 @csrf
-<input type="submit" value="add" class="btn btn-info"/></form>
+<input type="submit" value="add" class="btn btn-info"/>
+</form>
 <table border='2'>
-<tr>
-<th>Id</th>
-<th>FirstName</th>
-<th>LastName</th>
-<th>Gender</th>
-<th>City</th>
-<th>Age</th>
-<th>State</th>
-<th>Country</th>
-<th>Phone</th>
-<th>Pincode</th>
-<th>Date</th>
-<th>Email</th>
-<th>Password</th>
-<th>Hobbies</th>
-<th>File</th>
-<th>Operation</th>
-<th>Operation</th>
-</tr>
+    <tr>
+        <th>Id</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Gender</th>
+        <th>City</th>
+        <th>Age</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>Phone</th>
+        <th>Pincode</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Password</th>
+        <th>Hobbies</th>
+        <th>File</th>
+        <th>Operation</th>
+        <th>Operation</th>
+    </tr>
 @forelse($model as $k => $model1) 
 
 <tr>
@@ -57,13 +58,19 @@
     <td>{{$model1->country}}</td>
     <td>{{$model1->phone_number}}</td>
     <td>{{$model1->pincode}}</td>
-    <td>{{$model1->date_of_birth}}</td>
     <td>{{$model1->email}}</td>
+    <td>{{$model1->date_of_birth}}</td>
     <td>{{$model1->passwords}}</td>
     <td>{{$model1->hobbies}}</td>
-    <td>{{$model1->file_name}}</td>
-    <td><a href="{{route('employes.edit',['id' =>$model1['id']])}}">Edit</a></td>
-    <td><form action="{{route('employes.destroy',['id' =>$model1['id']])}}" method="post">
+    <td>
+    @if(strpos($model1->file_name,'.pdf') !== false || strpos($model1->file_name, '.xlsx') !== false || strpos($model1->file_name, '.docx') !== false || strpos($model1->file_name, '.xls')!==false)
+        <a target="_blank" href="{{ asset('storage/images/'.$model1->file_name) }}">Download</a>   
+    @elseif(strpos($model1->file_name, '.jpg') !== false || strpos($model1->file_name, '.gif') !== false || strpos($model1->file_name, '.png') !== false || strpos($model1->file_name, '.jpeg') !== false || strpos($model1->file_name, '.svg') !== false)
+    <img target="_blank" src="{{ asset('storage/images/'.$model1->file_name) }}" style="width:40%;  height:40px; border-radius: 50%"/>
+    @endif
+    </td>
+    <td><a href="{{route('employes.edit',['id' => $model1['id']])}}">Edit</a></td>
+    <td><form action="{{route('employes.destroy',['id' => $model1['id']])}}" method="post">
     @csrf
     @method('DELETE')
     <input type="submit" value="delete" /></form></td></tr>

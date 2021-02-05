@@ -2,6 +2,7 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -52,7 +53,7 @@ Route::delete('destroy/{id}', [StudentController::class, 'destroy'])->name('dest
 
 
 
-Route::group(['prefix' => 'employes', 'as' => 'employes.', 'middleware' => 'auth'],
+Route::group(['prefix' => 'employes', 'as' => 'employes.', 'middleware' =>[ 'auth','admin']],
 function (){
     Route::get('index',[EmployeController::class,'index'])->name('index');
     Route::get('create',[EmployeController::class,'create'])->name('create');
@@ -77,5 +78,15 @@ Route::post('store1', [StudentController::class, 'store1'])-> name('store1');
 
 
 Route::get('first', [StudentController::class, 'first'])-> name('file');
+
+Route::resource('products', ProductController::class);
+
+Route::get('dashboard', [StudentController::class, 'dashboard'])-> name('dashboard');
+Route::get('admin', [StudentController::class, 'admin'])-> name('admin');
+Route::get('manager', [StudentController::class, 'manager'])-> name('manager');
+Route::get('user', [StudentController::class, 'user'])-> name('user');
+
+
+Route::get('praba', [StudentController::class, 'praba'])-> name('praba');
 
 

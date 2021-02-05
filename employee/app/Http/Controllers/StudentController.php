@@ -97,4 +97,28 @@ class StudentController extends Controller
        // dd(asset('images'));
        dd(asset('storage/images'));
     }
+
+    public function dashboard(){
+        return View::make('dashboard'); 
+    }
+    public function admin(){
+        return View::make('admin');
+    }
+    public function manager(){
+        return View::make('manager');
+    }
+    public function user(){
+        $ages=[];
+        for($i=18;$i<100;$i++){
+            $ages[]=$i;
+        }
+        $state=[1 => 'TN',2 => 'AP',3 => 'KERALA',4 => 'UP'];
+        $country=[1 => 'India',2 => 'USA'];
+        return View::make('user',['ages'=>$ages,'state'=>$state,'country'=>$country]);
+    }
+    public function praba(){
+        $data=config('praba.role');
+        dd($data);
+    }
+    
 }

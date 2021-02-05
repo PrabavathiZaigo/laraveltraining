@@ -28,21 +28,36 @@
             <div class="col-xl-6">
             <lable for="first_name">FirstName</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="text" name="first_name" value="{{$data['first_name']}}"/></div>
+            <input type="text" name="first_name" value="{{$data['first_name']}}" class="form-control"/>
+            @if($errors->has('first_name'))
+                {{ $errors->first('first_name') }}
+            @endif
+            </div>
             <div class="col-xl-6 ">
             <lable for="last_name">LastName</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="text" name="last_name" value="{{$data['last_name']}}"/></div>
+            <input type="text" name="last_name" value="{{$data['last_name']}}" class="form-control"/>
+            @if($errors->has('last_name'))
+                {{ $errors->first('last_name') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="gender">Gender</lable></div>
             <div class="col-xl-6 mb-4">
             <input type="radio" name="gender" value="male" {{$data['gender'] == 'male' ? 'checked' : '' }} />Male
             <input type="radio" name="gender" value="female" {{$data['gender'] == 'female' ? 'checked': '' }} />Female
+            @if($errors->has('gender'))
+                {{ $errors->first('gender') }}
+            @endif
             </div>
             <div class="col-xl-6">
             <lable for="city">CityName</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="text" name="city" value="{{$data['city']}}"/></div>
+            <input type="text" name="city" value="{{$data['city']}}" class="form-control"/>
+            @if($errors->has('city'))
+                {{ $errors->first('city') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="age">Age</lable></div>
             <div class="col-xl-6 mb-4">
@@ -52,6 +67,9 @@
                     <option value="{{$key}}" {{ $data['age'] == $key ? 'selected': '' }}>{{$value}}</option>
                     @endforeach
                      </select>
+                     @if($errors->has('age'))
+                        {{ $errors->first('age') }}
+                    @endif
             </div>
             <div class="col-xl-6">
             <lable for="state">State</lable></div>
@@ -62,6 +80,9 @@
                     <option value="{{$key}}" {{ $data['state'] == $key ? 'selected': '' }}>{{$value}}</option>
                     @endforeach
                      </select> 
+                     @if($errors->has('state'))
+                        {{ $errors->first('state') }}
+                    @endif
             </div>
             <div class="col-xl-6">
             <lable for="country">Country</lable></div>
@@ -72,31 +93,54 @@
                     <option value="{{$key}}" {{ $data['country'] == $key ? 'selected': '' }}>{{$value}}</option>
                     @endforeach
                      </select>
+                     @if($errors->has('country'))
+                         {{ $errors->first('country') }}
+                    @endif
             </div>
             <div class="col-xl-6">
             <lable for="phone_number">PhoneNumber</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="number" name="phone_number" value="{{$data['phone_number']}}"/></div>
+            <input type="number" name="phone_number" value="{{$data['phone_number']}}" class="form-control"/>
+            @if($errors->has('phone_number'))
+                {{ $errors->first('phone_number') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="pincode">Pincode</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="number" name="pincode" value="{{$data['pincode']}}"/></div>
+            <input type="number" name="pincode" value="{{$data['pincode']}}" class="form-control"/>
+            @if($errors->has('pincode'))
+                {{ $errors->first('pincode') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="date_of_birth">Date-Of-Birth</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="date" name="date_of_birth" value="{{$data['date_of_birth']}}"/></div>
+            <input type="date" name="date_of_birth" value="{{$data['date_of_birth']}}" class="form-control"/>
+            @if($errors->has('date_of_birth'))
+                {{ $errors->first('date_of_birth') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="email">Email</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="text" name="email" value="{{$data['email']}}"/></div>
+            <input type="text" name="email" value="{{$data['email']}}" class="form-control"/>
+            @if($errors->has('email'))
+                {{ $errors->first('email') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="passwords">Password</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="password" name='passwords' value=""/></div>
+            <input type="password" name='passwords' value="" class="form-control"/>
+            @if($errors->has('passwords'))
+                {{ $errors->first('passwords') }}
+            @endif
+            </div>
             <div class="col-xl-6">
             <lable for="confirm_password">Confirm Password</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="password" name="confirm_password" value=""/></div>
+            <input type="password" name="confirm_password" value="" class="form-control"/></div>
             
             <div class="col-xl-6">
             <lable for="hobbies">Hobbies</lable></div>
@@ -106,13 +150,24 @@
             <input type="checkbox" name="hobbies[]" value="music"  @if(in_array('music',$hobbies)) checked @endif  />music
             <input type="checkbox" name="hobbies[]" value="cooking"  @if(in_array('cooking',$hobbies)) checked @endif />cooking
             <input type="checkbox" name="hobbies[]" value="play"  @if(in_array('play',$hobbies)) checked @endif />play
+            @if($errors->has('hobbies'))
+                {{ $errors->first('hobbies') }}
+            @endif
             </div>
-            <div class="col-xl-6">
+            <div class="col-xl-6 mb-4">
             <lable for="file_name">File</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="file" name="file_name"  value=""/>
-            <a target="_blank" href="{{ asset('storage/images/'.$data['file_name']) }}">Download</a> 
-            <div class="col-xl-6">
+            <input type="file" name="file_name"  value="" class="form-control"/>
+            @if(strpos($data['file_name'],'.pdf') !== false || strpos($data['file_name'], '.xlsx') !== false || strpos($data['file_name'], '.docx') !== false || strpos($data['file_name'], '.xls'))
+                <a target="_blank" href="{{ asset('storage/images/'.$data['file_name']) }}">Download</a>
+            @elseif (strpos($data['file_name'], '.jpg') !== false || strpos($data['file_name'], '.gif') !== false || strpos($data['file_name'], '.png') !== false || strpos($data['file_name'], '.jpeg') !== false || strpos($data['file_name'], '.svg') !== false)
+                <img target="_blank" src="{{ asset('storage/images/'.$data['file_name']) }}" style="width:20%;  height:30px; border-radius: 50% "/>
+            @endif 
+            @if($errors->has('file_name'))
+                {{ $errors->first('file_name') }}
+            @endif
+            </div>
+            <div class="col-xl-6 mb-4">
             <lable></lable></div>
             <div class="col-xl-6 mb-4">
             <input type="submit" value="update" class="btn btn-primary"/></div>

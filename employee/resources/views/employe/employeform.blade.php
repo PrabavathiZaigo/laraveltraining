@@ -156,7 +156,7 @@
             <div class="col-xl-6">
             <lable for="file_name">File</lable></div>
             <div class="col-xl-6 mb-4">
-            <input type="file" name="file_name" />
+            <input type="file" name="file_name" class="form-control" />
             <div class="text-danger">
             @if($errors->has('file_name'))
                 {{ $errors->first('file_name') }}

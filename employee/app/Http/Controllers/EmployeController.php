@@ -40,7 +40,7 @@ class EmployeController extends Controller
             'email' => 'email',
             'passwords' => 'required',
             'hobbies' => 'required',
-            'file_name' => 'required|mimes:pdf,docx,xlsx,xls|max:2048'
+            'file_name' => 'required|mimes:pdf,docx,xlsx,xls,jpg,png,gif,svg,jpeg|max:2048'
         ],[
             'first_name.required' => 'Enter your FirstName',
             'first_name.min' => 'FirstName should be atleast :min characters',
@@ -99,6 +99,42 @@ class EmployeController extends Controller
         return View::make('employe.employeupdate',['data' => $data, 'ages'=>$ages, 'state'=>$state, 'country'=>$country]);
     }
     public function update(Request $request){
+        $request->validate([
+            'first_name' => 'required|min:3|max:10',
+            'last_name' => 'required|min:2|max:6',
+            'gender' =>'required',
+            'city' => 'required',
+            'age' => 'required',
+            'state' => 'required',
+            'country' => 'required',
+            'phone_number' => 'required|digits:10',
+            'pincode' => 'required|digits:6',
+            'date_of_birth' => 'required',
+            'email' => 'email',
+            'passwords' => 'required',
+            'hobbies' => 'required',
+            'file_name' => 'required|mimes:pdf,docx,xlsx,xls,jpg,png,gif,svg,jpeg|max:2048'
+        ],[
+            'first_name.required' => 'Enter your FirstName',
+            'first_name.min' => 'FirstName should be atleast :min characters',
+            'first_name.max' => 'FirstName should not be greater than :max characters',
+            'last_name.required' => 'Enter your LastName',
+            'last_name.min' => 'LastName should be atleast :min characters',
+            'last_name.max' => 'LastName should not be greater than :max characters',
+            'gender.required' => 'Select your Gender',
+            'city.required' => 'City is required',
+            'age.required' => 'Select your Age',
+            'state.required' => 'Select your State',
+            'country.required' => 'Select your Country',
+            'phone_number.required' => 'Enter your phone number',
+            'pincode.required' => 'Enter your pincode',
+            'date_of_birth.required' => 'Fill your DOB',
+            'email.required' => 'We need your email address',
+            'passwords.required' => 'Please fill your password',
+            'hobbies.required' => 'Select Your Hobbies',
+            'file_name.required' => 'Please Upload the File',
+            'file_name.mimes' => 'supported files are PDF,docx,xlsx,xls'
+        ]);
         $timeStamp=Carbon::now()->format('Y_m_d_H_i_s');
             //dd($file);
             $fileExtension=$request->file_name->extension();
@@ -118,8 +154,8 @@ class EmployeController extends Controller
         $data->date_of_birth=$request->date_of_birth;
         $data->email=$request->email;
         $data->passwords=bcrypt($request->passwords);
-        $member->hobbies=implode(',',$request->hobbies);
-        $member->file_name=$fileName;
+        $data->hobbies=implode(',',$request->hobbies);
+        $data->file_name=$fileName;
         $data->update();
         return redirect()->route('employes.index')->with("success","Done");
     }
